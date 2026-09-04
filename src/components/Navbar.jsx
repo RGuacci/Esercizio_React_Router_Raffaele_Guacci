@@ -24,7 +24,7 @@ function NavbarCustom() {
 
                 <>
                  <Nav.Link as={Link} to="/register">Registrati</Nav.Link>
-                 <Nav.Link as={Link} to="/login">Accedi</Nav.Link>
+                 {/* <Nav.Link as={Link} to="/login">Accedi</Nav.Link> */}
                 </>
               )}
           </Nav>
