@@ -1,11 +1,32 @@
+import { useContext , useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router';
+
+
+
+
 export default function Register() {
+
+    const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createUser(name,email);
+
+        navigate('/');
+    }
+
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-12 col-md-6 col-lg-4">
                     <h1 className="text-center mb-4">Registrazione</h1>
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">
                                 Nome
@@ -16,6 +37,8 @@ export default function Register() {
                                 className="form-control"
                                 id="name"
                                 placeholder="Inserisci il tuo nome"
+                                value={name}
+                                onChange={(e)=>setName(e.target.value)}
                             />
                         </div>
 
@@ -29,21 +52,11 @@ export default function Register() {
                                 className="form-control"
                                 id="email"
                                 placeholder="Inserisci la tua email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
-                        <div className="mb-3">
-                            <label htmlFor="password" className="form-label">
-                                Password
-                            </label>
-
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="password"
-                                placeholder="Inserisci la password"
-                            />
-                        </div>
 
                         <button type="submit" className="btn btn-success w-100">
                             Registrati
